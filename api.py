@@ -5,7 +5,6 @@ import os
 class KakaoApi():
     def __init__(self, api_key, refresh_token):
         self.api_key = api_key
-        self.kakao_tokens = self.read_token_info()
 
         self.refresh_token = refresh_token
 
