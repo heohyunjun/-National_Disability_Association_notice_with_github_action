@@ -1,18 +1,13 @@
 import requests
 import json
+import os
 
 class KakaoApi():
-    def __init__(self, api_key):
+    def __init__(self, api_key, refresh_token):
         self.api_key = api_key
         self.kakao_tokens = self.read_token_info()
 
-        self.refresh_token = self.kakao_tokens['refresh_token']
-
-    @staticmethod
-    def read_token_info():
-        with open("token.json", "r") as tkr:
-            kakao_token = json.load(tkr)
-            return kakao_token
+        self.refresh_token = refresh_token
 
     def update_access_token(self):
         kakao_url = "https://kauth.kakao.com/oauth/token"
@@ -25,9 +20,7 @@ class KakaoApi():
         response = requests.post(kakao_url, data=data)
         update_token = response.json()
         if 'refresh_token' in update_token:
-            self.kakao_tokens['refresh_token'] = update_token['refresh_token']
-        with open("token.json", "w") as tkr:
-            json.dump(self.kakao_tokens, tkr)
+            os.environ['REFRESH_TOKEN'] = update_token['refresh_token']
 
         return update_token['access_token']
 

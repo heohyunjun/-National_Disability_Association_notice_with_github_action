@@ -2,6 +2,7 @@ from collections import defaultdict
 import configparser
 from api import KakaoApi
 from crawl import check_noticed_of_today, get_response_body
+import os
 
 seoul_metro_home_url = 'http://www.seoulmetro.co.kr/kr/'
 announcement_page = 'board.do?menuIdx=546'
@@ -15,8 +16,9 @@ is_no_notice_msg = '알림 없음'
 if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('config.ini')
-    api_key = config['restapi']['client_id']
-    kakao_api = KakaoApi(api_key)
+    api_key = os.getenv('REST_API_KEY')
+    refresh_token = os.getenv('REFRESH_TOKEN')
+    kakao_api = KakaoApi(api_key, refresh_token)
 
     return_msg = defaultdict()
     url = seoul_metro_home_url+announcement_page
