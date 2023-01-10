@@ -3,9 +3,8 @@
 
 name: nda_notice
 
-on:
-  schedule:
-      - cron: '00 17 * * *'
+on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
