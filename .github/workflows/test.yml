@@ -20,6 +20,6 @@ jobs:
       run: |
         python test.py
       env:
-       TOKEN_FOR_ACTION: ${{ secrets.TEST }}
+        TEST: ${{ secrets.TEST }}
 
 
