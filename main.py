@@ -14,8 +14,6 @@ words_to_check = ['지연', '무정차']
 is_no_notice_msg = '알림 없음'
 
 if __name__ == "__main__":
-    config = configparser.ConfigParser()
-    config.read('config.ini')
     api_key = os.getenv('REST_API_KEY')
     refresh_token = os.getenv('REFRESH_TOKEN')
     kakao_api = KakaoApi(api_key, refresh_token)

@@ -1,13 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from datetime import datetime, timedelta
-from collections import defaultdict
-import configparser
-from api import KakaoApi
-import json
-
-
-
 
 def date_range(start, end):
     start = datetime.strptime(start, "%m/%d")
